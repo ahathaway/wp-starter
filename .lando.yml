@@ -1,0 +1,26 @@
+name: <UPDATE PROJECT NAME HERE>
+recipe: wordpress
+config:
+  webroot: .
+  php: '7.2'
+  via: nginx
+  database: mysql
+  xdebug: true
+  conf:
+    server: .config/nginx/default.conf
+    php: .config/php/php.ini
+#    database: config/mysql
+proxy:
+  mailhog:
+    - mail.<UPDATE PROJECT NAME HERE>.lndo.site
+  pma:
+    - pma.<UPDATE PROJECT NAME HERE>.lndo.site
+services:
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+  pma:
+    type: phpmyadmin
+    hosts:
+      - database
